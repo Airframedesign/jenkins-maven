@@ -13,7 +13,7 @@ pipeline {
         }
         post {
             always {
-                junit allowEmptyresults: true, testresults: /target/surefire-reports/*.xml
+                junit allowEmptyresults: true, testresults: '/target/surefire-reports/*.xml'
                 }
         }
         stage('deploy') { 
