@@ -22,6 +22,26 @@ pipeline {
                 sh "mvn package"
             }
         }
+        
+        stage('Build and Docker Image') { 
+            steps {
+                sh "docker build -t airframedesign/docker_jenkins_pipeline:${BUILD_NUMBER} ."
+            }
+        }
+        
+        stage('Docker login') { 
+            steps {
+                withCredentials([string(credentialsId: 'DockerID', variable: 'Dockerpwd')]) {
+                    sh "docker login -u airframedesign -p ${Dockerpwd}"
+            }
+        }
+        }
+        stage('Push to Docker') { 
+            steps {
+                sh "docker push -t airframedesign/docker_jenkins_pipeline:${BUILD_NUMBER}"
+            }
+        }
+        
         stage('Archving') { 
             steps {
                  archiveArtifacts '**/target/*.jar'
