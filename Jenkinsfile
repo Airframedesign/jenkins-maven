@@ -31,8 +31,8 @@ pipeline {
         
         stage('Docker login') { 
             steps {
-                withCredentials([string(credentialsId: 'DockerID', variable: 'Dockerpwd')]) {
-                    sh "docker login -u airframedesign -p ${Dockerpwd}"
+                withCredentials([string(credentialsId: 'DockerNewID', variable: 'Dockerpwd')]) {
+                     sh "docker login -u airframedesign -p ${Dockerpwd}"
             }
         }
         }
