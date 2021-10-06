@@ -38,7 +38,7 @@ pipeline {
         }
         stage('Push to Docker') { 
             steps {
-                sh "docker push -t airframedesign/docker_jenkins_pipeline:${BUILD_NUMBER}"
+                sh "docker push airframedesign/docker_jenkins_pipeline:${BUILD_NUMBER}"
             }
         }
         
